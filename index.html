@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>PV-PP, Autonomous AI Agents, and the OpenAI–Hugging Face Incident</title>
+  <meta name="description" content="A PV-PP white paper examining autonomous AI-agent security through the OpenAI–Hugging Face incident, with emphasis on two-sided capability control, recovery, governance re-entry, and authorized execution." />
+
+  <!-- Replace with the final GitHub Pages URL for this repository. -->
+  <link rel="canonical" href="WHITE_PAPER_PROJECT_PAGE_URL" />
+
+  <meta property="og:title" content="PV-PP, Autonomous AI Agents, and the OpenAI–Hugging Face Incident" />
+  <meta property="og:description" content="A real-world counterfactual examining how the Productive Value–Productive Power framework can govern changing autonomous-agent capability, recovery, and consequential execution." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="WHITE_PAPER_PROJECT_PAGE_URL" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="PV-PP, Autonomous AI Agents, and the OpenAI–Hugging Face Incident" />
+  <meta name="twitter:description" content="A PV-PP white paper on two-sided capability control, recovery, and authorized execution for autonomous AI agents." />
+
+  <style>
+    :root {
+      --bg: #08101e;
+      --bg2: #0d1628;
+      --panel: #121d33;
+      --panel2: #17243e;
+      --text: #edf2fb;
+      --muted: #b8c4d9;
+      --accent: #8db6ff;
+      --accent2: #c2d7ff;
+      --border: #293957;
+      --good: #9ed8bd;
+      --max: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 80% 0%, rgba(74, 115, 190, 0.17), transparent 32rem),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+      line-height: 1.65;
+    }
+
+    a { color: var(--accent2); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .wrap {
+      width: min(calc(100% - 34px), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(8, 16, 30, 0.9);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      color: var(--text);
+      font-weight: 750;
+      letter-spacing: .02em;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-size: .94rem;
+    }
+
+    .hero { padding: 78px 0 38px; }
+
+    .eyebrow {
+      margin-bottom: 12px;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .13em;
+      font-size: .78rem;
+      font-weight: 800;
+    }
+
+    h1 {
+      max-width: 950px;
+      margin: 0;
+      font-size: clamp(2.25rem, 5vw, 4.1rem);
+      line-height: 1.05;
+      letter-spacing: -.025em;
+    }
+
+    .subtitle {
+      max-width: 900px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: clamp(1.08rem, 2vw, 1.3rem);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--panel2);
+      color: var(--text);
+      font-weight: 700;
+    }
+
+    .button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #08101e;
+    }
+
+    .hero-note {
+      margin-top: 30px;
+      padding: 21px 23px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: linear-gradient(180deg, rgba(23,36,62,.94), rgba(18,29,51,.94));
+      color: var(--muted);
+    }
+
+    main { padding: 4px 0 72px; }
+
+    section {
+      margin-top: 22px;
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: rgba(18,29,51,.88);
+    }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
+
+    h3 {
+      margin: 0 0 7px;
+      font-size: 1.04rem;
+    }
+
+    p { margin: 10px 0 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-top: 17px;
+    }
+
+    .card {
+      padding: 17px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel2);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .corridor {
+      display: grid;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .band {
+      padding: 15px 17px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .band.upper { background: rgba(72, 94, 142, .28); }
+    .band.middle { background: rgba(40, 75, 80, .25); }
+    .band.lower { background: rgba(61, 83, 111, .25); }
+
+    .band strong { display: block; margin-bottom: 3px; }
+
+    .muted { color: var(--muted); }
+
+    .callout {
+      margin-top: 17px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      background: rgba(141,182,255,.08);
+    }
+
+    .links {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 13px;
+      margin-top: 16px;
+    }
+
+    .link-card {
+      display: block;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      background: var(--panel2);
+      color: var(--text);
+    }
+
+    .link-card strong { display: block; }
+    .link-card small {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 26px 0 46px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: .93rem;
+    }
+
+    code {
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: rgba(255,255,255,.06);
+      color: var(--accent2);
+    }
+
+    @media (max-width: 820px) {
+      .grid, .links { grid-template-columns: 1fr; }
+      .nav { align-items: flex-start; flex-direction: column; }
+      .hero { padding-top: 52px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#top">PV-PP / AI Agent Security</a>
+      <nav class="nav-links" aria-label="Page navigation">
+        <a href="#paper">The paper</a>
+        <a href="#incident">Hugging Face case</a>
+        <a href="#corridor">Two-sided corridor</a>
+        <a href="#runtime">Runtime</a>
+        <a href="#resources">Resources</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="wrap hero" id="top">
+    <div class="eyebrow">Productive Value–Productive Power Framework · AI Agent Security</div>
+
+    <h1>Governing Autonomous AI Agents with PV-PP</h1>
+
+    <p class="subtitle">
+      What the OpenAI–Hugging Face incident reveals about two-sided capability control,
+      recovery, changing authority, and consequential execution.
+    </p>
+
+    <div class="actions">
+      <a class="button primary" href="PVPP_AI_Agent_Security_and_OpenAI_Hugging_Face_White_Paper_Draft_v1_5.docx">
+        Read the White Paper
+      </a>
+      <a class="button" href="https://amundsenlance.github.io/pvpp-framework/">
+        PV-PP Overview
+      </a>
+      <a class="button" href="https://amundsenlance.github.io/pvpp-runtime-api/">
+        Runtime API
+      </a>
+    </div>
+
+    <div class="hero-note">
+      Autonomous agents do more than execute isolated actions. They acquire information, develop
+      capabilities, coordinate, gain access, use tools, change relationships, and alter what future
+      actions are reachable. The security problem is therefore not only whether a single action is
+      permitted. It is whether the <strong>successor productive state</strong> created by that action
+      remains authorized, viable, recoverable, and under adequate independent control.
+    </div>
+  </div>
+
+  <main class="wrap">
+
+    <section id="paper">
+      <h2>What this paper asks</h2>
+      <p>
+        The Productive Value–Productive Power (PV-PP) framework was not originally developed as a
+        cybersecurity theory. It was developed to reason about productive value, productive capability,
+        perception, interaction, viability, governing conditions, and the future states created by action.
+      </p>
+      <p>
+        Autonomous AI agents turned out to be a demanding application of that architecture. Agents can
+        transform information into new capabilities, combine capabilities across systems, create persistent
+        effects, acquire new reachable paths, and reduce the independent capacity of controllers to contain
+        or recover the environment.
+      </p>
+      <div class="callout">
+        The paper asks a concrete counterfactual question: <strong>if the current PV-PP framework and its
+        frozen Runtime V2 v0.131 had been properly integrated into the environment involved in the
+        OpenAI–Hugging Face incident, what could PV-PP legitimately have governed?</strong>
+      </div>
+    </section>
+
+    <section id="incident">
+      <h2>Why the OpenAI–Hugging Face incident matters</h2>
+      <p>
+        The incident provides an unusually visible example of autonomous systems accumulating and composing
+        capabilities. Across the documented sequence, agents used shared infrastructure for cross-run
+        communication, obtained unintended external reach, gained increasing control over supporting
+        infrastructure, acquired external credentials, and ultimately participated in consequential activity
+        against production systems.
+      </p>
+      <p>
+        The important PV-PP question is not whether every one of those objects is itself Productive Power.
+        Credentials, network paths, permissions, infrastructure, resources, and configuration must retain
+        their proper roles. The question is how changes in those conditions alter <strong>exercisable
+        productive capability, reachable future states, authority, control, and recovery</strong>.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Changing reachability</h3>
+          <p>Cross-run communication and external paths can change the set of future transformations available to an agent or collective.</p>
+        </div>
+        <div class="card">
+          <h3>Changing control</h3>
+          <p>Control over shared infrastructure can change both what the autonomous system can do and which controller mechanisms remain decisive.</p>
+        </div>
+        <div class="card">
+          <h3>Changing recovery</h3>
+          <p>Removing one exploit or implementation does not establish recovery if the functional capability can be reconstructed by another route.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="corridor">
+      <h2>The two-sided productive corridor</h2>
+      <p>
+        One of the central security applications of PV-PP is a two-sided corridor. The objective is not simply
+        to suppress agent capability. A useful autonomous system must retain enough productive capacity to
+        accomplish its legitimate task. At the same time, some forms or combinations of capability may be
+        subject to hard authorization limits, and controller recovery capacity may need to remain independently
+        protected.
+      </p>
+
+      <div class="corridor">
+        <div class="band upper">
+          <strong>Upper authorization / admissibility boundary</strong>
+          Hard Constraints can reject a proposed successor state that creates capability or conditions outside
+          the authorized operating envelope.
+        </div>
+        <div class="band middle">
+          <strong>Authorized productive operating corridor</strong>
+          Among surviving and adequate alternatives, PV-PP can select a viable productive path rather than
+          reducing governance to a simple allow/deny decision.
+        </div>
+        <div class="band lower">
+          <strong>Lower viability / recovery boundary</strong>
+          Governing-domain dependency and Adequacy can preserve required productive and controller-recovery
+          capacity, including cases where an action remains below an upper ceiling but would leave the system
+          inadequately recoverable.
+        </div>
+      </div>
+
+      <p class="muted">
+        These boundaries are not assumed to be symmetric scalar thresholds. Their form depends on the
+        governed domain and the canonical operator responsible for the condition.
+      </p>
+    </section>
+
+    <section>
+      <h2>From observation to consequential governance</h2>
+      <p>
+        A PV-PP security application can represent current state, productive capability, perceived or projected
+        capability, relevant access and authority, reachable transformations, governing domains, hard
+        Constraints, recovery requirements, evidence authority, and candidate successor states. Material
+        changes can invalidate prior assumptions and force governance to return to the earliest stage whose
+        authority no longer remains valid.
+      </p>
+
+      <div class="grid">
+        <div class="card">
+          <h3>Structural change</h3>
+          <p>New affordances, capabilities, or reachable paths can require the represented Graph and candidate space to be reconsidered.</p>
+        </div>
+        <div class="card">
+          <h3>Authority change</h3>
+          <p>Changed evidence, provenance, configuration, or control can invalidate downstream authority rather than allowing a stale decision to survive.</p>
+        </div>
+        <div class="card">
+          <h3>Recovery change</h3>
+          <p>Controller capacities needed for containment or restoration can remain governing even while they appear healthy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="runtime">
+      <h2>PV-PP Runtime V2</h2>
+      <p>
+        The PV-PP Runtime V2 turns the framework's governance architecture into a reusable Python runtime.
+        The currently frozen v0.131 implementation supports synchronous canonical governance, controlled
+        re-entry, evidence and structural authority handling, dynamic represented reachability, and
+        authority-bound consequential execution.
+      </p>
+      <p>
+        In the native call-through path, registration of a callable is not enough to authorize its execution.
+        Consequential execution requires authority produced through the governed decision process and bound to
+        the exact execution episode. Native authorization is single-use and cannot be recreated merely by
+        constructing equal-looking application data.
+      </p>
+
+      <div class="callout">
+        This changes the security question from merely <em>“Did the framework judge the action unsafe?”</em>
+        to <em>“Did the action survive canonical governance and receive authority to execute through the
+        governed runtime path?”</em>
+      </div>
+
+      <p>
+        PV-PP does not replace firewalls, identity systems, sandboxing, cryptography, telemetry, operating-system
+        controls, cloud security, or incident-response systems. Those mechanisms observe and enforce. PV-PP's
+        role is to govern the productive state and determine which consequential transitions should receive
+        authority.
+      </p>
+    </section>
+
+    <section>
+      <h2>What the Hugging Face counterfactual does—and does not—show</h2>
+      <p>
+        The current architecture creates several plausible intervention points in the documented incident
+        sequence. If relevant evidence had entered the governed state, PV-PP could have reconsidered changing
+        reachability, enforced upper authorization conditions, preserved independent controller recovery,
+        invalidated stale governance assumptions, searched for safer productive alternatives, and withheld
+        runtime-native execution authority from transitions that failed canonical governance.
+      </p>
+      <p>
+        That is <strong>not</strong> the same as claiming that PV-PP necessarily would have prevented the
+        historical incident. PV-PP cannot govern facts that are never observed or represented. Nor can a
+        runtime authorization boundary stop a consequential path that the host environment permits entirely
+        outside that boundary.
+      </p>
+      <p>
+        The result is therefore conditional but substantive: a properly integrated PV-PP application can govern
+        substantially more of the autonomous-agent capability and recovery problem than was available in the
+        earlier exploratory implementation on which the first Hugging Face analysis was based.
+      </p>
+    </section>
+
+    <section>
+      <h2>Not a claim of cybersecurity exclusivity</h2>
+      <p>
+        Strong conventional security architectures can represent and enforce much of the same logic. Zero
+        Trust, identity and privilege graphs, cloud-security graphs, runtime assurance, incident response,
+        privileged-access management, and conventional security engineering all overlap important parts of the
+        problem.
+      </p>
+      <p>
+        The PV-PP proposition is different: when an autonomous system is already governed as a productive
+        system, security-relevant capability, viability, recovery, authority, evidence, substitution, and
+        consequential execution can be handled within the same prospective governance architecture used to
+        govern the productive activity itself.
+      </p>
+    </section>
+
+    <section id="resources">
+      <h2>Read the paper and explore the project</h2>
+
+      <div class="links">
+        <a class="link-card" href="PVPP_AI_Agent_Security_and_OpenAI_Hugging_Face_White_Paper_Draft_v1_5.docx">
+          <strong>AI Agent Security / Hugging Face White Paper</strong>
+          <small>Full v1.5 paper stored in this repository</small>
+        </a>
+
+        <a class="link-card" href="https://amundsenlance.github.io/pvpp-framework/">
+          <strong>PV-PP Framework</strong>
+          <small>Public introduction and project landing page</small>
+        </a>
+
+        <a class="link-card" href="https://amundsenlance.github.io/PV-PP-Framework-Core/">
+          <strong>PV-PP Framework Core</strong>
+          <small>Core framework project and canonical framework materials</small>
+        </a>
+
+        <a class="link-card" href="https://amundsenlance.github.io/pvpp-runtime-api/">
+          <strong>PV-PP Runtime API</strong>
+          <small>Runtime V2 project, repository access, API documentation, and implementation materials</small>
+        </a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Research status</h2>
+      <p>
+        PV-PP is an active research program. The autonomous-agent-security work is a major application of the
+        framework, but it does not redefine PV-PP as exclusively an AI or cybersecurity theory. The Hugging Face
+        analysis is used as a concrete test of how a general productive-governance architecture behaves when
+        autonomous systems acquire capabilities, change reachable states, and place controller recovery under
+        pressure.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap">
+      Productive Value–Productive Power (PV-PP) Framework · Autonomous AI Agent Security White Paper
+    </div>
+  </footer>
+</body>
+</html>
