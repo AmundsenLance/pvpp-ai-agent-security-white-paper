@@ -5,19 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>PV-PP, Autonomous AI Agents, and the OpenAI–Hugging Face Incident</title>
-  <meta name="description" content="A PV-PP white paper examining autonomous AI-agent security through the OpenAI–Hugging Face incident, with emphasis on two-sided capability control, recovery, governance re-entry, and authorized execution." />
+  <meta name="description" content="PV-PP white paper v1.6 examining autonomous AI-agent security through the OpenAI–Hugging Face incident, using the canonical Version 2.1 framework and frozen Runtime V2.1 v0.141." />
 
-  <!-- Replace with the final GitHub Pages URL for this repository. -->
-  <link rel="canonical" href="WHITE_PAPER_PROJECT_PAGE_URL" />
+  <link rel="canonical" href="https://amundsenlance.github.io/pvpp-ai-agent-security-white-paper/" />
 
   <meta property="og:title" content="PV-PP, Autonomous AI Agents, and the OpenAI–Hugging Face Incident" />
-  <meta property="og:description" content="A real-world counterfactual examining how the Productive Value–Productive Power framework can govern changing autonomous-agent capability, recovery, and consequential execution." />
+  <meta property="og:description" content="White Paper v1.6: a real-world counterfactual examining two-sided capability control, recovery, changing authority, governance re-entry, and authority-bound execution with PV-PP Version 2.1 and Runtime v0.141." />
   <meta property="og:type" content="article" />
-  <meta property="og:url" content="WHITE_PAPER_PROJECT_PAGE_URL" />
+  <meta property="og:url" content="https://amundsenlance.github.io/pvpp-ai-agent-security-white-paper/" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="PV-PP, Autonomous AI Agents, and the OpenAI–Hugging Face Incident" />
-  <meta name="twitter:description" content="A PV-PP white paper on two-sided capability control, recovery, and authorized execution for autonomous AI agents." />
+  <meta name="twitter:description" content="PV-PP White Paper v1.6 on two-sided capability control, recovery, and authorized execution for autonomous AI agents." />
 
   <style>
     :root {
@@ -283,8 +282,11 @@
     </p>
 
     <div class="actions">
-      <a class="button primary" href="PVPP_AI_Agent_Security_and_OpenAI_Hugging_Face_White_Paper_Draft_v1_5.docx">
-        Read the White Paper
+      <a class="button primary" href="PVPP_AI_Agent_Security_and_OpenAI_Hugging_Face_White_Paper_v1_6_Zenodo_DOI_10.5281_zenodo.22923735(1).docx">
+        Read White Paper v1.6
+      </a>
+      <a class="button" href="https://doi.org/10.5281/zenodo.22923735">
+        Zenodo DOI
       </a>
       <a class="button" href="https://amundsenlance.github.io/pvpp-framework/">
         PV-PP Overview
@@ -298,7 +300,7 @@
       Autonomous agents do more than execute isolated actions. They acquire information, develop
       capabilities, coordinate, gain access, use tools, change relationships, and alter what future
       actions are reachable. The security problem is therefore not only whether a single action is
-      permitted. It is whether the <strong>successor productive state</strong> created by that action
+      permitted. It is whether the <strong>successor productive and control state</strong> created by that action
       remains authorized, viable, recoverable, and under adequate independent control.
     </div>
   </div>
@@ -319,9 +321,9 @@
         or recover the environment.
       </p>
       <div class="callout">
-        The paper asks a concrete counterfactual question: <strong>if the current PV-PP framework and its
-        frozen Runtime V2 v0.131 had been properly integrated into the environment involved in the
-        OpenAI–Hugging Face incident, what could PV-PP legitimately have governed?</strong>
+        White Paper v1.6 asks a concrete counterfactual question: <strong>if the canonical PV-PP Version 2.1
+        framework and frozen Runtime V2.1 v0.141 had been properly integrated into the environment involved
+        in the OpenAI–Hugging Face incident, what could PV-PP legitimately have governed?</strong>
       </div>
     </section>
 
@@ -380,9 +382,9 @@
         </div>
         <div class="band lower">
           <strong>Lower viability / recovery boundary</strong>
-          Governing-domain dependency and Adequacy can preserve required productive and controller-recovery
-          capacity, including cases where an action remains below an upper ceiling but would leave the system
-          inadequately recoverable.
+          Governing-domain dependency and Restoration Adequacy can preserve required productive and
+          controller-recovery capacity, including cases where an action remains below an upper ceiling but
+          would leave the system inadequately recoverable.
         </div>
       </div>
 
@@ -419,12 +421,12 @@
     </section>
 
     <section id="runtime">
-      <h2>PV-PP Runtime V2</h2>
+      <h2>PV-PP Runtime V2.1</h2>
       <p>
-        The PV-PP Runtime V2 turns the framework's governance architecture into a reusable Python runtime.
-        The currently frozen v0.131 implementation supports synchronous canonical governance, controlled
-        re-entry, evidence and structural authority handling, dynamic represented reachability, and
-        authority-bound consequential execution.
+        The PV-PP Runtime V2.1 turns the framework's governance architecture into a reusable Python runtime.
+        The currently frozen v0.141 implementation supports synchronous canonical governance, information
+        governance, controlled re-entry, replay and state-sufficiency machinery, objective lifecycle handling,
+        dynamic represented reachability, and authority-bound consequential execution.
       </p>
       <p>
         In the native call-through path, registration of a callable is not enough to authorize its execution.
@@ -434,9 +436,9 @@
       </p>
 
       <div class="callout">
-        This changes the security question from merely <em>“Did the framework judge the action unsafe?”</em>
-        to <em>“Did the action survive canonical governance and receive authority to execute through the
-        governed runtime path?”</em>
+        The frozen v0.141 implementation is still <strong>synchronous</strong>. It does not continuously sense
+        arbitrary external changes, inject asynchronous observations into an active invocation, supervise
+        distributed agents in flight, or perform true mid-flight cancellation.
       </div>
 
       <p>
@@ -448,13 +450,28 @@
     </section>
 
     <section>
+      <h2>Framework, runtime, host integration, and external enforcement</h2>
+      <p>
+        White Paper v1.6 makes the claim boundary explicit. The canonical framework defines the
+        representational and governance structure. Frozen Runtime V2.1 v0.141 implements a substantial
+        synchronous subset. Host applications supply domain models, neutral causal observations, adapters,
+        and registered consequential primitives. External systems supply sensing and physical enforcement.
+      </p>
+      <p>
+        Framework-permitted behavior is not attributed to v0.141 unless it is implemented there, host
+        integration is not treated as runtime-native behavior, and neither framework nor runtime receives
+        credit for observations or enforcement supplied by external systems.
+      </p>
+    </section>
+
+    <section>
       <h2>What the Hugging Face counterfactual does—and does not—show</h2>
       <p>
         The current architecture creates several plausible intervention points in the documented incident
         sequence. If relevant evidence had entered the governed state, PV-PP could have reconsidered changing
         reachability, enforced upper authorization conditions, preserved independent controller recovery,
         invalidated stale governance assumptions, searched for safer productive alternatives, and withheld
-        runtime-native execution authority from transitions that failed canonical governance.
+        runtime-native execution authority from mediated transitions that failed canonical governance.
       </p>
       <p>
         That is <strong>not</strong> the same as claiming that PV-PP necessarily would have prevented the
@@ -466,6 +483,19 @@
         The result is therefore conditional but substantive: a properly integrated PV-PP application can govern
         substantially more of the autonomous-agent capability and recovery problem than was available in the
         earlier exploratory implementation on which the first Hugging Face analysis was based.
+      </p>
+    </section>
+
+    <section>
+      <h2>Current runtime evidence</h2>
+      <p>
+        Frozen Runtime V2.1 v0.141 passes its complete packaged regression suite of <strong>1,093 tests</strong>,
+        and the Version 2.1 Small Economy eight-case benchmark rerun passes. The current paper also incorporates
+        a banked adversarial capture-the-flag governance simulation built on the canonical decision-cycle path.
+      </p>
+      <p>
+        These results support the architectural counterfactual, but they do not establish operational
+        effectiveness in a production autonomous-agent deployment.
       </p>
     </section>
 
@@ -489,9 +519,14 @@
       <h2>Read the paper and explore the project</h2>
 
       <div class="links">
-        <a class="link-card" href="PVPP_AI_Agent_Security_and_OpenAI_Hugging_Face_White_Paper_Draft_v1_5.docx">
-          <strong>AI Agent Security / Hugging Face White Paper</strong>
-          <small>Full v1.5 paper stored in this repository</small>
+        <a class="link-card" href="PVPP_AI_Agent_Security_and_OpenAI_Hugging_Face_White_Paper_v1_6_Zenodo_DOI_10.5281_zenodo.22923735(1).docx">
+          <strong>AI Agent Security / Hugging Face White Paper v1.6</strong>
+          <small>Current paper · Version 2.1 / Runtime v0.141 · DOI 10.5281/zenodo.22923735</small>
+        </a>
+
+        <a class="link-card" href="https://doi.org/10.5281/zenodo.22923735">
+          <strong>Zenodo DOI</strong>
+          <small>Persistent publication record for White Paper v1.6</small>
         </a>
 
         <a class="link-card" href="https://amundsenlance.github.io/pvpp-framework/">
@@ -506,7 +541,7 @@
 
         <a class="link-card" href="https://amundsenlance.github.io/pvpp-runtime-api/">
           <strong>PV-PP Runtime API</strong>
-          <small>Runtime V2 project, repository access, API documentation, and implementation materials</small>
+          <small>Runtime V2.1 project, repository access, API documentation, and implementation materials</small>
         </a>
       </div>
     </section>
@@ -514,11 +549,11 @@
     <section>
       <h2>Research status</h2>
       <p>
-        PV-PP is an active research program. The autonomous-agent-security work is a major application of the
-        framework, but it does not redefine PV-PP as exclusively an AI or cybersecurity theory. The Hugging Face
-        analysis is used as a concrete test of how a general productive-governance architecture behaves when
-        autonomous systems acquire capabilities, change reachable states, and place controller recovery under
-        pressure.
+        PV-PP is an active research program. White Paper v1.6 supersedes v1.5 as the current
+        OpenAI–Hugging Face paper while preserving the earlier Zenodo version in the record. The new revision
+        updates the implementation baseline to canonical Version 2.1 / Runtime V2.1 v0.141, adds the explicit
+        framework–runtime–host–external capability boundary, and incorporates the banked CTF governance
+        simulation as supporting experimental evidence.
       </p>
     </section>
 
@@ -526,7 +561,7 @@
 
   <footer>
     <div class="wrap">
-      Productive Value–Productive Power (PV-PP) Framework · Autonomous AI Agent Security White Paper
+      Productive Value–Productive Power (PV-PP) Framework · Autonomous AI Agent Security White Paper v1.6
     </div>
   </footer>
 </body>
